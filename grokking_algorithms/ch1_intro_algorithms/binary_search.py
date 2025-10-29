@@ -16,7 +16,7 @@ It’s ideal for large datasets where a linear scan would be too slow, as it red
         - If target == midpoint → return the index.
         - If target < midpoint  → search the left half.
         - If target > midpoint  → search the right half.
-    4. Repeat (2-3) until the range is empty.
+    4. Repeat (steps 2-3) until the range is 1 element / it's not found.
 
 ## Complexity
     - Time:  O(log n)
