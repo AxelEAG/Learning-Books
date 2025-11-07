@@ -11,7 +11,7 @@ from random import randint
 from typing import Optional
 
 # Iterative implementation of binary search
-def binary_search_iter(ls: list, target: int) -> Optional[int]:
+def binary_search(ls: list, target: int) -> Optional[int]:
     # Define search range
     left, right = 0, len(ls) - 1 
 
