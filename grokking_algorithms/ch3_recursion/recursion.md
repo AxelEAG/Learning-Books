@@ -26,6 +26,21 @@ To avoid this, recursive code can often be rewritten:
 - As an **iterative** version using loops
 - Or using **tail recursion**, where the recursive call is the last operation in the function
 
+### **Tail Recursion**
+
+In tail recursion, the function’s recursive call is the final action before returning — meaning there’s no pending computation after it.
+This allows the interpreter (in languages that support it) to reuse the same stack frame for each call instead of adding new ones, reducing space complexity to O(1).
+
+For example, a regular recursive factorial must “wait” to multiply after returning:
+
+`return n * factorial(n - 1)`
+
+requiring it to keep track of the state of the function even after calling it.
+
+Whereas a tail-recursive version passes the result forward directly:
+
+`return factorial(n - 1, acc * n)`
+
 ### **Exercises**
 **3.1** - Greet2 has a variable *name* with value *"Maggie"*, and it is called from Greet, which also has a variable *name = "Maggie"*. 
 
