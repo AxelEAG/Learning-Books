@@ -1,36 +1,36 @@
 
 ### **Divide and Conquer**
 
-**Divide and conquer** is a problem solving technique that relies on finding a solvable **base case**, and using recursion to reduce it into that same base.
+**Divide and conquer** is a problem solving technique that breaks down a problem into smaller subproblems of the same type.
 
+The algorithms follow the general structure:
+1. **Base case** – a simplest-possible subproblem that can be solved directly.
+2. **Divide** – split the current problem into smaller parts.
+3. **Conquer** – solve each part (often using recursion).
+4. **Combine** – merge the partial results into the final solution.
 
+Divide-and-conquer algorithms naturally align with mathematical **induction**, which is often used to prove they work correctly.
 
-Functional programming does not use loops but rather only recursion
+**Induction** has two steps:
+* **Base case:** Show the algorithm is correct for the simplest possible input
+* **Inductive step:** Assume the algorithm works for smaller inputs, and use that assumption to prove it works for a general input.
 
+This is why the proofs of these algorithms may feel so natural, as they directly map to their proof.
 
 ### **Quicksort**
 
-Quicksort is a sorting algorithm that given an array, does the following:
-	1. Pick a pivot
-	2. Partition the array into two sub-arrays: elements that are smaller, and elements that are bigger than the pivot.
-	3. Repeat the process on the subarrays until finding the base case.
+Quicksort is a divide and conquer sorting algorithm that works as follows:
+1. Picks a pivot
+2. Partitions the array into two sub-arrays: 
+	* elements smaller than the pivot
+	* elements bigger than the pivot
+3. Recursively sorts the two sub-arrays
+4. Combine results: [sorted smaller] + pivot + [sorted bigger]
 
-In this case, the base case is:
-* 0 element array
-* 1 element array
-as they require no sorting
+The **base case** is an array with 0 or 1 elements, as they require no sorting.
 
-Inductive proofs - a way to prove an algorithm works. It has two steps: base case and inductive case.
-
-worst case vs average case
-functions take a constant amount of time to run the required operations, so in practice there might be a difference between algorithms
-selection sort: O(n^2)
-quick sort: O(n log n) on avg, O(n^2) worst case. Hits avg case more often though
-merge sort: O(n log n)
-
-worst case for quick sort heavily depends on pivot selection
 ### **Exercises** 
-**4.1**  - 
+**4.1**  - A recursive summation function can be written as follows
 ```python
 ### Space inefficient (creates copy of list)
 def summ(ls: List[int]) -> int:
@@ -53,12 +53,12 @@ def summ(ls: List[int]) -> int:
 			return 0
 		return ls[i] + rec(i + 1)
 	
-	return summ(ls)
+	return rec(ls)
 
 ```
 Can also optimize the next two for space
 
-**4.2** - 
+**4.2** - A recursive counting function can be written as follows
 ```python
 def count(ls: List[int]) -> int:
 	if not ls:
@@ -68,7 +68,7 @@ def count(ls: List[int]) -> int:
 
 ```
 
-**4.3** -
+**4.3** - A recursive maximum finding function can be written as follow
 ```python
 def maxm(ls: List[int]) -> int:
 	if len(ls) == 1:
@@ -79,15 +79,18 @@ def maxm(ls: List[int]) -> int:
 		return smax
 	else:
 		return ls[0]
-	# OR: return ls[0] if ls[i] > smax else smax
+	# OR: return ls[0] if ls[0] > smax else smax
 	# OOR: return max(ls[0], maxm[ls[1:]])
 ```
 
-**4.4** - 
+**4.4** - These are the two cases for binary search:
 * **Base case:** 1 element in the search range
 * **Recursive case:** Splitting list in two and continuing search on the relevant half
 
+**4.5** - Printing every value in an array would take O(n), as it must touch all of them once.
 
-Learning Goals:
-* Divide and conquer
-* Quicksort
+**4.6** - For the same reason, doubling each value takes O(n) too.
+
+**4.7** - As it's a single element, it's constant regardless of the array size. So, it's O(1).
+
+**4.8** - As it requires to multiply all elements with each other, it does n operations for each of the n elements. That is, O(n²)
