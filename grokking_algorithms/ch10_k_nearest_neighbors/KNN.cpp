@@ -1,16 +1,7 @@
 #include <array>
 #include <vector>
-#include <string_view>
-#include <string>
-
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <sstream>
-#include <cmath>
 
 #include<queue>
-#include<numeric>
 
 constexpr int SIZE = 64;
 
@@ -27,6 +18,15 @@ struct TestSample : Sample
 	int predictedLabel{};
 };
 
+constexpr int getDistance(const Sample& s1, const Sample& s2)
+{
+	int distance{ 0 };
+	for (std::size_t i{ 0 }; i < SIZE; ++i) {
+		const int diff = s1.pixels[i] - s2.pixels[i];
+		distance += diff * diff;
+	}
+	return distance;
+}
 
 std::vector<TestSample> KNearestNeighbors(const std::vector<Sample>& trainingData, const std::vector<Sample>& testingData, std::size_t K)
 {
